@@ -1,1 +1,1 @@
-export const appName = "JobNexus"
+export const appName = "JobNexus";
