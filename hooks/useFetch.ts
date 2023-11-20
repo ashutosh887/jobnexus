@@ -6,10 +6,17 @@ import { RAPID_API_KEY } from "@env";
 
 const rapidApiKey = RAPID_API_KEY;
 
-const useFetch = (endpoint: string, query: object) => {
+type UseFetchType = {
+  data: JobInterface[];
+  isLoading: boolean;
+  error: Error | null;
+  refetch: () => void;
+};
+
+const useFetch = (endpoint: string, query: object): UseFetchType => {
   const [data, setData] = useState<JobInterface[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<Error | null>(null);
 
   const options = {
     method: "GET",
@@ -28,10 +35,11 @@ const useFetch = (endpoint: string, query: object) => {
       const response = await axios.request(options);
 
       setData(response.data.data);
-      setIsLoading(false);
-    } catch (error: any) {
-      setError(error);
-      console.log(error);
+    } catch (err) {
+      const errorObject =
+        err instanceof Error ? err : new Error(JSON.stringify(err));
+      setError(errorObject);
+      console.log(errorObject);
     } finally {
       setIsLoading(false);
     }
