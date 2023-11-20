@@ -1,12 +1,46 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, SafeAreaView } from "react-native";
 import { appName } from "../config/constants";
 import React from "react";
 
+import { COLORS, icons, SIZES } from "../config";
+import { Stack, useRouter } from "expo-router";
+import ScreenHeaderBtn from "../components/common/ScreenHeaderBtn";
+import { ScrollView } from "react-native-gesture-handler";
+
 const Home = () => {
+  const router = useRouter();
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.appName}>{appName}</Text>
-    </View>
+    <SafeAreaView>
+      <Stack.Screen
+        options={{
+          headerStyle: {
+            backgroundColor: COLORS.lightWhite,
+          },
+          headerTitleAlign: "center",
+          headerShadowVisible: true,
+          headerLeft: () => (
+            <ScreenHeaderBtn icon={icons.menu} dimension="60%" />
+          ),
+          headerRight: () => (
+            <ScreenHeaderBtn icon={icons.profile} dimension="100%" />
+          ),
+          headerTitle: "Home",
+        }}
+      />
+      <ScrollView showsVerticalScrollIndicator>
+        <View
+          style={{
+            flex: 1,
+            justifyContent: "center",
+            alignItems: "center",
+            padding: SIZES.medium,
+          }}
+        >
+          <Text>{appName}</Text>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
