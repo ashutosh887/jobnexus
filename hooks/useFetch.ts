@@ -7,7 +7,7 @@ import { RAPID_API_KEY } from "@env";
 const rapidApiKey = RAPID_API_KEY;
 
 const useFetch = (endpoint: string, query: object) => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<JobInterface[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
