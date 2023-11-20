@@ -1,20 +1,38 @@
-import { View, Text, StyleSheet, SafeAreaView } from "react-native";
-import { appName } from "../config/constants";
-import React from "react";
+import { View, StyleSheet, SafeAreaView } from "react-native";
+import React, { useCallback, useState } from "react";
 
 import { COLORS, icons, SIZES } from "../config";
-import { Stack, useRouter } from "expo-router";
+import { SplashScreen, Stack, useRouter } from "expo-router";
 import ScreenHeaderBtn from "../components/common/ScreenHeaderBtn";
-import { ScrollView } from "react-native-gesture-handler";
+import { ScrollView } from "react-native";
 import NearbyJobs from "../components/home/NearbyJobs";
 import PopularJobs from "../components/home/PopularJobs";
 import Welcome from "../components/home/Welcome";
+import { useFonts } from "expo-font";
 
 const Home = () => {
   const router = useRouter();
 
+  const [searchTerm, setSearchTerm] = useState<string>("");
+
+  const [fontsLoaded] = useFonts({
+    DMBold: require("../assets/fonts/DMSans-Bold.ttf"),
+    DMMedium: require("../assets/fonts/DMSans-Medium.ttf"),
+    DMRegular: require("../assets/fonts/DMSans-Regular.ttf"),
+  });
+
+  const onLayoutRootView = useCallback(async () => {
+    if (fontsLoaded) {
+      await SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded]);
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
       <Stack.Screen
         options={{
           headerStyle: {
@@ -31,16 +49,14 @@ const Home = () => {
           headerTitle: "Home",
         }}
       />
-      <ScrollView showsVerticalScrollIndicator>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <View
           style={{
             flex: 1,
-            justifyContent: "center",
-            alignItems: "center",
             padding: SIZES.medium,
           }}
         >
-          <Welcome />
+          <Welcome searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
           <PopularJobs />
           <NearbyJobs />
         </View>
