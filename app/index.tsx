@@ -6,6 +6,9 @@ import { COLORS, icons, SIZES } from "../config";
 import { Stack, useRouter } from "expo-router";
 import ScreenHeaderBtn from "../components/common/ScreenHeaderBtn";
 import { ScrollView } from "react-native-gesture-handler";
+import NearbyJobs from "../components/home/NearbyJobs";
+import PopularJobs from "../components/home/PopularJobs";
+import Welcome from "../components/home/Welcome";
 
 const Home = () => {
   const router = useRouter();
@@ -37,7 +40,9 @@ const Home = () => {
             padding: SIZES.medium,
           }}
         >
-          <Text>{appName}</Text>
+          <Welcome />
+          <PopularJobs />
+          <NearbyJobs />
         </View>
       </ScrollView>
     </SafeAreaView>
