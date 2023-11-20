@@ -47,8 +47,6 @@ export default function Welcome({
     };
   };
 
-  const getActiveRoute = () => `soe`;
-
   return (
     <View>
       <View style={styles.container}>
