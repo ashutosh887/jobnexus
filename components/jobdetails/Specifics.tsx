@@ -1,12 +1,61 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
+import { COLORS, FONT, SIZES } from "../../config";
 
-export default function Specifics() {
+type Props = {
+  title: string;
+  points: string[];
+};
+
+export default function Specifics({ title, points }: Props) {
   return (
-    <View>
-      <Text>Specifics</Text>
+    <View style={styles.container}>
+      <Text style={styles.title}>{title}:</Text>
+
+      <View style={styles.pointsContainer}>
+        {points.map((item, index) => (
+          <View style={styles.pointWrapper} key={item + index}>
+            <View style={styles.pointDot} />
+            <Text style={styles.pointText}>{item}</Text>
+          </View>
+        ))}
+      </View>
     </View>
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    marginTop: SIZES.large,
+    backgroundColor: "#FFF",
+    borderRadius: SIZES.medium,
+    padding: SIZES.medium,
+  },
+  title: {
+    fontSize: SIZES.large,
+    color: COLORS.primary,
+    fontFamily: FONT.bold,
+  },
+  pointsContainer: {
+    marginVertical: SIZES.small,
+  },
+  pointWrapper: {
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignItems: "flex-start",
+    marginVertical: SIZES.small / 1.25,
+  },
+  pointDot: {
+    width: 6,
+    height: 6,
+    borderRadius: 6,
+    backgroundColor: COLORS.gray2,
+    marginTop: 6,
+  },
+  pointText: {
+    fontSize: SIZES.medium - 2,
+    color: COLORS.gray,
+    fontFamily: FONT.regular,
+    marginLeft: SIZES.small,
+  },
+});

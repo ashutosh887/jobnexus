@@ -14,6 +14,8 @@ import ScreenHeaderBtn from "../../components/common/ScreenHeaderBtn";
 import demoData from "../../config/demoData";
 import Company from "../../components/jobdetails/Company";
 import JobTabs from "../../components/jobdetails/JobTabs";
+import Specifics from "../../components/jobdetails/Specifics";
+import JobAbout from "../../components/jobdetails/JobAbout";
 
 const tabs = ["About", "Qualifications", "Responsibilities"];
 
@@ -39,6 +41,36 @@ const JobDetails = () => {
   ];
 
   const handlePress = () => {};
+
+  const displayTabContent = () => {
+    switch (activeTab) {
+      case "About":
+        return (
+          <JobAbout info={data[0].job_description ?? "No data provided"} />
+        );
+
+      case "Qualifications":
+        return (
+          <Specifics
+            title="Qualifications"
+            // @ts-ignore
+            points={data[0].job_highlights?.Qualifications ?? ["N/A"]}
+          />
+        );
+
+      case "Responsibilities":
+        return (
+          <Specifics
+            title="Responsibilities"
+            // @ts-ignore
+            points={data[0].job_highlights?.Responsibilities ?? ["N/A"]}
+          />
+        );
+
+      default:
+        return null;
+    }
+  };
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
@@ -98,6 +130,8 @@ const JobDetails = () => {
               activeTab={activeTab}
               setActiveTab={setActiveTab}
             />
+
+            {displayTabContent()}
           </View>
         )}
       </ScrollView>
