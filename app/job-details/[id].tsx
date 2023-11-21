@@ -15,11 +15,15 @@ import demoData from "../../config/demoData";
 import Company from "../../components/jobdetails/Company";
 import JobTabs from "../../components/jobdetails/JobTabs";
 
+const tabs = ["About", "Qualifications", "Responsibilities"];
+
 const JobDetails = () => {
   const router = useRouter();
   const params = useGlobalSearchParams();
 
   const [refreshing, setRefreshing] = useState(false);
+
+  const [activeTab, setActiveTab] = useState<string>(tabs[0]);
 
   const onRefresh = () => {};
 
@@ -82,7 +86,18 @@ const JobDetails = () => {
           <Text>No data available</Text>
         ) : (
           <View style={{ padding: SIZES.medium, paddingBottom: 100 }}>
-            <Text>Job details page...</Text>
+            <Company
+              companyLogo={data[0].employer_logo}
+              jobTitle={data[0].job_title}
+              companyName={data[0].employer_name}
+              location={data[0].job_country}
+            />
+
+            <JobTabs
+              tabs={tabs}
+              activeTab={activeTab}
+              setActiveTab={setActiveTab}
+            />
           </View>
         )}
       </ScrollView>
