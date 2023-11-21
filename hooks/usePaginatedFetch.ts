@@ -1,20 +1,17 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useEffect, useState } from "react";
 
 // @ts-ignore
 import { RAPID_API_KEY } from "@env";
+import axios from "axios";
 
-type UseFetchType = {
-  data: JobInterface[];
-  isLoading: boolean;
-  error: Error | null;
-  refetch: () => void;
-};
-
-const useFetch = (endpoint: string, query: object): UseFetchType => {
+const usePaginatedFetch = (
+  endpoint: string,
+  query: object
+): UsePaginatedFetchType => {
   const [data, setData] = useState<JobInterface[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
+  const [page, setPage] = useState(1);
 
   const options = {
     method: "GET",
@@ -23,7 +20,7 @@ const useFetch = (endpoint: string, query: object): UseFetchType => {
       "X-RapidAPI-Key": RAPID_API_KEY,
       "X-RapidAPI-Host": "jsearch.p.rapidapi.com",
     },
-    params: { ...query },
+    params: { ...query, page },
   };
 
   const fetchData = async () => {
@@ -45,14 +42,24 @@ const useFetch = (endpoint: string, query: object): UseFetchType => {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [page]);
 
   const refetch = () => {
     setIsLoading(true);
     fetchData();
   };
 
-  return { data, isLoading, error, refetch };
+  const nextPage = () => {
+    setPage((prevPage) => prevPage + 1);
+  };
+
+  const prevPage = () => {
+    if (page > 1) {
+      setPage((prevPage) => prevPage - 1);
+    }
+  };
+
+  return { data, isLoading, error, refetch, nextPage, prevPage, page };
 };
 
-export default useFetch;
+export default usePaginatedFetch;
