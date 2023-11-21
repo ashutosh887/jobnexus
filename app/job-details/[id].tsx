@@ -41,8 +41,6 @@ const JobDetails = () => {
     () => {},
   ];
 
-  const handlePress = () => {};
-
   const displayTabContent = () => {
     switch (activeTab) {
       case "About":
@@ -89,7 +87,7 @@ const JobDetails = () => {
               <ScreenHeaderBtn
                 icon={icons.left}
                 dimension="60%"
-                // handlePress={async () => router.back()}
+                handlePress={async () => router.back()}
               />
             );
           },
@@ -98,7 +96,8 @@ const JobDetails = () => {
               <ScreenHeaderBtn
                 icon={icons.share}
                 dimension="60%"
-                // handlePress={async () => router.back()}
+                // TODO: add handling for sharing a job opportunity
+                handlePress={async () => router.back()}
               />
             );
           },

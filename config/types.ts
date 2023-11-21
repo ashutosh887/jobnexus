@@ -38,3 +38,13 @@ interface JobInterface {
   job_onet_soc: string;
   job_onet_job_zone: string;
 }
+
+interface UsePaginatedFetchType {
+  data: JobInterface[];
+  isLoading: boolean;
+  error: Error | null;
+  refetch: () => void;
+  nextPage: () => void;
+  prevPage: () => void;
+  page: number;
+}

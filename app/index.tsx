@@ -1,4 +1,4 @@
-import { View, StyleSheet, SafeAreaView } from "react-native";
+import { View, SafeAreaView } from "react-native";
 import React, { useCallback, useState } from "react";
 
 import { COLORS, icons, SIZES } from "../config";
@@ -35,8 +35,6 @@ const Home = () => {
 
   const handleRightPress = () => {};
 
-  const getSearchRoute = (slug: string): string => `/search/${slug}`;
-
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
       <Stack.Screen
@@ -50,17 +48,20 @@ const Home = () => {
             <ScreenHeaderBtn
               icon={icons.menu}
               dimension="60%"
-              // handlePress={handleLeftPress}
+              // @ts-ignore
+              handlePress={handleLeftPress}
             />
           ),
           headerRight: () => (
             <ScreenHeaderBtn
               icon={icons.profile}
               dimension="100%"
-              // handlePress={handleRightPress}
+              // @ts-ignore
+              handlePress={handleRightPress}
             />
           ),
           headerTitle: "Home",
+          animation: "slide_from_bottom",
         }}
       />
       <ScrollView showsVerticalScrollIndicator={false}>
