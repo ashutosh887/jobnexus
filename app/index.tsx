@@ -35,6 +35,8 @@ const Home = () => {
 
   const handleRightPress = () => {};
 
+  const getSearchRoute = (slug: string): string => `/search/${slug}`;
+
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
       <Stack.Screen
@@ -68,7 +70,16 @@ const Home = () => {
             padding: SIZES.medium,
           }}
         >
-          <Welcome searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+          <Welcome
+            searchTerm={searchTerm}
+            setSearchTerm={setSearchTerm}
+            handleClick={() => {
+              if (searchTerm) {
+                // @ts-ignore
+                router.push(`/search/${searchTerm}`);
+              }
+            }}
+          />
           <PopularJobs />
           <NearbyJobs />
         </View>
