@@ -31,6 +31,10 @@ const Home = () => {
     return null;
   }
 
+  const handleLeftPress = () => {};
+
+  const handleRightPress = () => {};
+
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
       <Stack.Screen
@@ -41,10 +45,18 @@ const Home = () => {
           headerTitleAlign: "center",
           headerShadowVisible: true,
           headerLeft: () => (
-            <ScreenHeaderBtn icon={icons.menu} dimension="60%" />
+            <ScreenHeaderBtn
+              icon={icons.menu}
+              dimension="60%"
+              // handlePress={handleLeftPress}
+            />
           ),
           headerRight: () => (
-            <ScreenHeaderBtn icon={icons.profile} dimension="100%" />
+            <ScreenHeaderBtn
+              icon={icons.profile}
+              dimension="100%"
+              // handlePress={handleRightPress}
+            />
           ),
           headerTitle: "Home",
         }}
@@ -64,16 +76,5 @@ const Home = () => {
     </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  appName: {
-    fontSize: 24,
-  },
-});
 
 export default Home;

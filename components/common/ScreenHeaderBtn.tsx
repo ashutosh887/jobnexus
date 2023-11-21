@@ -13,9 +13,14 @@ import { COLORS, SIZES } from "../../config";
 type Props = {
   icon: ImageSourcePropType;
   dimension: DimensionValue;
+  handlePress?: () => {};
 };
 
-export default function ScreenHeaderBtn({ icon, dimension }: Props) {
+export default function ScreenHeaderBtn({
+  icon,
+  dimension,
+  handlePress,
+}: Props) {
   const getImageStyle = (
     dimension: DimensionValue
   ): StyleProp<ImageStyle> | undefined => {
@@ -25,8 +30,6 @@ export default function ScreenHeaderBtn({ icon, dimension }: Props) {
       borderRadius: SIZES.small / 1.25,
     };
   };
-
-  const handlePress = () => {};
 
   return (
     <TouchableOpacity style={styles.btnContainer} onPress={handlePress}>
