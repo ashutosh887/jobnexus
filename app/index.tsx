@@ -31,9 +31,15 @@ const Home = () => {
     return null;
   }
 
-  const handleLeftPress = () => {};
+  const handleLeftPress = (): any => {
+    // @ts-ignore
+    router.push("about");
+  };
 
-  const handleRightPress = () => {};
+  const handleRightPress = () => {
+    // @ts-ignore
+    router.push("profile");
+  };
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
@@ -48,7 +54,6 @@ const Home = () => {
             <ScreenHeaderBtn
               icon={icons.menu}
               dimension="60%"
-              // @ts-ignore
               handlePress={handleLeftPress}
             />
           ),
@@ -56,7 +61,6 @@ const Home = () => {
             <ScreenHeaderBtn
               icon={icons.profile}
               dimension="100%"
-              // @ts-ignore
               handlePress={handleRightPress}
             />
           ),

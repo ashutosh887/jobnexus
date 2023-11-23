@@ -13,7 +13,7 @@ import { COLORS, SIZES } from "../../config";
 type Props = {
   icon: ImageSourcePropType;
   dimension: DimensionValue;
-  handlePress?: () => {};
+  handlePress?: () => void;
 };
 
 export default function ScreenHeaderBtn({
