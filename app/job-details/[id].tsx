@@ -5,10 +5,10 @@ import {
   ScrollView,
   RefreshControl,
   ActivityIndicator,
+  ToastAndroid,
 } from "react-native";
 import React, { useState } from "react";
 import { Stack, useGlobalSearchParams, useRouter } from "expo-router";
-import useFetch from "../../hooks/useFetch";
 import { COLORS, SIZES, icons } from "../../config";
 import ScreenHeaderBtn from "../../components/common/ScreenHeaderBtn";
 import demoData from "../../config/demoData";
@@ -17,6 +17,7 @@ import JobTabs from "../../components/jobdetails/JobTabs";
 import Specifics from "../../components/jobdetails/Specifics";
 import JobAbout from "../../components/jobdetails/JobAbout";
 import JobFooter from "../../components/jobdetails/JobFooter";
+import * as Clipboard from "expo-clipboard";
 
 const tabs = ["About", "Qualifications", "Responsibilities"];
 
@@ -96,8 +97,10 @@ const JobDetails = () => {
               <ScreenHeaderBtn
                 icon={icons.share}
                 dimension="60%"
-                // TODO: add handling for sharing a job opportunity
-                handlePress={async () => router.back()}
+                handlePress={() => {
+                  Clipboard.setStringAsync(data[0]?.job_google_link);
+                  ToastAndroid.show("Copied to clipboard", ToastAndroid.SHORT);
+                }}
               />
             );
           },
