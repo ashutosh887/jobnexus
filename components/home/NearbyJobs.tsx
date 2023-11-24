@@ -11,17 +11,14 @@ import {
 import useFetch from "../../hooks/useFetch";
 import NearbyJobCard from "../cards/NearbyJobCard";
 import { COLORS, FONT, SIZES } from "../../config";
-import demoData from "../../config/demoData";
 
 const Nearbyjobs = () => {
   const router = useRouter();
 
-  // const { data, isLoading, error } = useFetch("search", {
-  //   query: "React Native developer",
-  //   num_pages: "1",
-  // });
-
-  const [data, isLoading, error] = [demoData, false, undefined];
+  const { data, isLoading, error } = useFetch("search", {
+    query: "React Native developer",
+    num_pages: "1",
+  });
 
   return (
     <View style={styles.container}>

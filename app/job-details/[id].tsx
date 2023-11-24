@@ -11,13 +11,13 @@ import React, { useState } from "react";
 import { Stack, useGlobalSearchParams, useRouter } from "expo-router";
 import { COLORS, SIZES, icons } from "../../config";
 import ScreenHeaderBtn from "../../components/common/ScreenHeaderBtn";
-import demoData from "../../config/demoData";
 import Company from "../../components/jobdetails/Company";
 import JobTabs from "../../components/jobdetails/JobTabs";
 import Specifics from "../../components/jobdetails/Specifics";
 import JobAbout from "../../components/jobdetails/JobAbout";
 import JobFooter from "../../components/jobdetails/JobFooter";
 import * as Clipboard from "expo-clipboard";
+import useFetch from "../../hooks/useFetch";
 
 const tabs = ["About", "Qualifications", "Responsibilities"];
 
@@ -29,18 +29,15 @@ const JobDetails = () => {
 
   const [activeTab, setActiveTab] = useState<string>(tabs[0]);
 
-  const onRefresh = () => {};
+  const onRefresh = () => {
+    setRefreshing(true);
+    refetch();
+    setRefreshing(false);
+  };
 
-  // const { data, isLoading, error, refetch } = useFetch("job-details", {
-  //   job_id: params?.id,
-  // });
-
-  const [data, isLoading, error, refetch] = [
-    demoData,
-    false,
-    undefined,
-    () => {},
-  ];
+  const { data, isLoading, error, refetch } = useFetch("job-details", {
+    job_id: params?.id,
+  });
 
   const displayTabContent = () => {
     switch (activeTab) {

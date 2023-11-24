@@ -12,22 +12,17 @@ import React from "react";
 import PopularJobCard from "../cards/PopularJobCard";
 import { COLORS, FONT, SIZES } from "../../config";
 import useFetch from "../../hooks/useFetch";
-import demoData from "../../config/demoData";
 
 const Popularjobs = () => {
   const router = useRouter();
-  // const { data, isLoading, error } = useFetch("search", {
-  //   query: "React developer",
-  //   num_pages: "1",
-  // });
+  const { data, isLoading, error } = useFetch("search", {
+    query: "React developer",
+    num_pages: "1",
+  });
 
-  const [data, isLoading, error] = [demoData, false, undefined];
+  const [selectedJob, setSelectedJob] = useState<string>();
 
-  const [selectedJob, setSelectedJob] = useState();
-
-  // @ts-ignore
-  const handleCardPress = (item) => {
-    // @ts-ignore
+  const handleCardPress = (item: JobInterface) => {
     router.push(`/job-details/${item.job_id}`);
     setSelectedJob(item.job_id);
   };
