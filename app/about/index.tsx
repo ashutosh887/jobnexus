@@ -27,7 +27,7 @@ export default function About() {
               />
             );
           },
-          animation: "slide_from_bottom",
+          animation: "slide_from_left",
         }}
       />
       <ScrollView showsVerticalScrollIndicator={false}>

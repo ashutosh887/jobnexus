@@ -27,16 +27,7 @@ export default function Profile() {
               />
             );
           },
-          headerRight: () => {
-            return (
-              <ScreenHeaderBtn
-                icon={icons.share}
-                dimension="60%"
-                handlePress={async () => router.back()}
-              />
-            );
-          },
-          animation: "slide_from_bottom",
+          animation: "fade",
         }}
       />
       <ScrollView showsVerticalScrollIndicator={false}>
