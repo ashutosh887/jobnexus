@@ -1,7 +1,9 @@
+import icons from "./icons";
+
 const demoData: JobInterface[] = [
   {
     employer_name: "Google",
-    employer_logo: "https://github.com/ashutosh887.png",
+    employer_logo: icons.placeholder,
     employer_website: "https://www.google.com",
     employer_company_type: "Technology",
     job_publisher: "LinkedIn",
@@ -42,7 +44,7 @@ const demoData: JobInterface[] = [
   },
   {
     employer_name: "Facebook",
-    employer_logo: "https://github.com/ashutosh887.png",
+    employer_logo: icons.placeholder,
     employer_website: "https://www.facebook.com",
     employer_company_type: "Social Media",
     job_publisher: "Glassdoor",
@@ -83,7 +85,7 @@ const demoData: JobInterface[] = [
   },
   {
     employer_name: "Amazon",
-    employer_logo: "https://github.com/ashutosh887.png",
+    employer_logo: icons.placeholder,
     employer_website: "https://www.amazon.com",
     employer_company_type: "E-commerce",
     job_publisher: "Indeed",

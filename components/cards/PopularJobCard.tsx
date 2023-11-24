@@ -68,7 +68,7 @@ const PopularJobCard = ({ item, selectedJob, handleCardPress }: Props) => {
           source={
             item?.employer_logo && checkImageURL(item?.employer_logo)
               ? { uri: item.employer_logo }
-              : icons.profile
+              : icons.placeholder
           }
           resizeMode="contain"
           style={styles.logoImage}

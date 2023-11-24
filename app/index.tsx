@@ -59,7 +59,7 @@ const Home = () => {
           ),
           headerRight: () => (
             <ScreenHeaderBtn
-              icon={icons.profile}
+              icon={icons.placeholder}
               dimension="100%"
               handlePress={handleRightPress}
             />

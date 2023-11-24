@@ -18,7 +18,7 @@ const Company = ({ companyLogo, jobTitle, companyName, location }: Props) => {
           source={
             companyLogo && checkImageURL(companyLogo)
               ? { uri: companyLogo }
-              : icons.profile
+              : icons.placeholder
           }
           resizeMode="contain"
           style={styles.logoImage}
