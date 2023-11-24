@@ -70,7 +70,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     padding: SIZES.medium,
-    paddingBottom: 100,
     height: height - 40,
   },
   logo: {
